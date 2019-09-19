@@ -1,0 +1,82 @@
+﻿
+@model Skill_Matrix_Model.SkillTransactionModel
+
+
+@{
+    ViewBag.Title = "SelectedSkills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Selected Skills</li>
+    </ol>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                you have selected the following skills, kindly rate yourself in 1 to 5 against each skills
+            </div>
+            <div class="panel-body" style="height:480px;  overflow: hidden;">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken();
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@item.Skill_Name :</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        @Html.RadioButton(Convert.ToString(item.Skill_Id), 1, item.Skill_Score == "1" ? true : false) 1
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButton(Convert.ToString(item.Skill_Id), 2, item.Skill_Score == "2" ? true : false) 2
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButton(Convert.ToString(item.Skill_Id), 3, item.Skill_Score == "3" ? true : false) 3
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButton(Convert.ToString(item.Skill_Id), 4, item.Skill_Score == "4" ? true : false) 4
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButton(Convert.ToString(item.Skill_Id), 5, item.Skill_Score == "5" ? true : false) 5
+                                    </label>
+                                    @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="message"></label>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="message"></label>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary" id="Btn-Submit">Submit</button>
+                                <input type="reset" class="btn btn-default" value="Reset" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+@if (TempData["SuccessMessage"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["SuccessMessage"]");
+            };
+    </script>
+}

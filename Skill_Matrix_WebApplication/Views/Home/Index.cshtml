@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript"
+        src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+<script type="text/javascript">
+    function initViz() {
+        var containerDiv = document.getElementById("vizContainer"),
+            url = "https://public.tableau.com/views/SkillMatrixDashboard1/SkillMatrixDashboard?:embed=y&:display_count=yes&publish=yes&:origin=viz_share_link",
+            options = {
+                hideTabs: true,
+                onFirstInteractive: function () {
+                    console.log("Run this code when the viz has finished loading.");
+                }
+            };
+
+        var viz = new tableau.Viz(containerDiv, url, options);
+        // Create a viz object and embed it in the container div.
+    }
+</script>
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Dashboard</li>
+    </ol>
+</div>
+<br />
+<body onload="initViz();">
+    <div id="vizContainer" style="width:1150px; height:600px;border:1px solid black;"></div>
+</body>

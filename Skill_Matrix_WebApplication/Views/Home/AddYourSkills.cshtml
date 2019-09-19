@@ -1,0 +1,198 @@
+﻿@model Skill_Matrix_Model.SkillModel
+
+@{
+    ViewBag.Title = "AddYourSkills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<link href="~/css/bootstrap-multiselect.css" rel="stylesheet" />
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Add your skills</li>
+    </ol>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add your skills</div>
+            <div class="panel-body">
+                <div class="panel-body" style="height:550px;  overflow: hidden;">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken();
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Programming Language :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Pl" multiple="multiple" name="Ddl_Pl">
+                                        @foreach (var item in Model.lstPLskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name </option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">Database :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Data" multiple="multiple" name="Ddl_Data">
+                                        @foreach (var item in Model.lstDBskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="message">Website Designing :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Wd" multiple="multiple" name="Ddl_Wd">
+                                        @foreach (var item in Model.lstWDskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">Scripting Language :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Sl" multiple="multiple" name="Ddl_Sl">
+                                        @foreach (var item in Model.lstSLskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="email">Operating System :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Os" multiple="multiple" name="Ddl_Os">
+                                        @foreach (var item in Model.lstOSskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="message">Facility Management Service :</label>
+                                <div class="col-md-9">
+                                    <select id="Ddl_Fms" multiple="multiple" name="Ddl_Fms">
+                                        @foreach (var item in Model.lstFMSskills)
+                                        {
+                                            <option value="@item.Id">@item.Skill_Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="message"></label>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
+                                    @*<input type="reset" class="btn btn-default" value="Reset" />*@
+                                    <a href="@Url.Action("AddYourSkills","Home")" class="btn btn-default">Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div><!-- /.panel-->
+</div>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#Ddl_Pl').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+
+        $('#Ddl_Data').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+
+        $('#Ddl_Wd').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+
+        $('#Ddl_Sl').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+
+        $('#Ddl_Os').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+
+        $('#Ddl_Fms').multiselect({
+
+            includeSelectAllOption: true,
+            buttonWidth: 200
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $('#btn-submit').click(function () {
+        var skills = [];
+
+        $.each($("#Ddl_Pl option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        $.each($("#Ddl_Data option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        $.each($("#Ddl_Wd option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        $.each($("#Ddl_Sl option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        $.each($("#Ddl_Os option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        $.each($("#Ddl_Fms option:selected"), function () {
+            skills.push($(this).val());
+        });
+
+        if (skills.length === 0) {
+            alert("Select atleast one of the skills.");
+            return false
+        }
+
+    });
+
+</script>
+@if (TempData["ErrorMsg"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["ErrorMsg"]");
+            };
+    </script>
+}

@@ -1,0 +1,172 @@
+﻿
+@model Skill_Matrix_Model.ProjectModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Add your resource</li>
+    </ol>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add your resource</div>
+            <div class="panel-body">
+                <div class="panel-body" style="height:550px;  overflow: hidden;">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="EmpID">Emp ID :</label>
+                            <div class="col-md-2">
+                                <input id="empid" name="EmpId" type="text" placeholder="Emp ID" class="form-control" maxlength="6">&nbsp;<span id="errmsg"></span>
+                            </div>
+                            <label class="col-md-2 control-label" for="EmpName">Emp Name :</label>
+                            <div class="col-md-2">
+                                <input id="empname" name="EmpName" type="text" placeholder="Emp Name" class="form-control" readonly>
+                            </div>
+                            <label class="col-md-2 control-label" for="name">Project Name :</label>
+                            <div class="col-md-2">
+                                <select class="form-control">
+                                    <option value="0">Please Select</option>
+                                    @foreach (var item in Model.lstprojectModel)
+                                    {
+                                        <option value="@item.ID">@item.Project_Name </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="startdate">Start Date :</label>
+                            <div class="col-md-2">
+                                <div class='input-group date' id='startdate'>
+                                    <input type='text' class="form-control" name="StartDate" readonly />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="col-md-2 control-label" for="enddate">End Date :</label>
+                            <div class="col-md-2">
+                                <div class='input-group date' id='enddate'>
+                                    <input type='text' class="form-control" name="EndDate" readonly />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="col-md-2 control-label" for="Duration">Duration :</label>
+                            <div class="col-md-2">
+                                <input id="duration" name="name" type="text" placeholder="Duration" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="message"></label>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary" id="btn-submit">Add Details</button>
+                                @*<a href="@Url.Action("AddResource","ResourceManager")" class="btn btn-default">Reset Details</a>*@
+                                <button type="reset" class="btn btn-default" id="btn-submit">Reset Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <thead class="table">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Emp ID</th>
+                                        <th scope="col">Emp Name</th>
+                                        <th scope="col">Project Name</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">End Date</th>
+                                        <th scope="col">Duration</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>mdo</td>
+                                        <td>12/09/2019</td>
+                                        <td>12/09/2019</td>
+                                        <td>mdo</td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>fat</td>
+                                        <td>12/09/2019</td>
+                                        <td>12/09/2019</td>
+                                        <td>mdo</td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "")
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>twitter</td>
+                                        <td>12/09/2019</td>
+                                        <td>12/09/2019</td>
+                                        <td>mdo</td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "")
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        $('#startdate').datetimepicker({
+            format: 'DD/MM/YYYY',
+            ignoreReadonly: true
+        });
+
+        $('#enddate').datetimepicker({
+            format: 'DD/MM/YYYY',
+            ignoreReadonly: true
+        });
+    });
+
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#empid").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Number Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+</script>

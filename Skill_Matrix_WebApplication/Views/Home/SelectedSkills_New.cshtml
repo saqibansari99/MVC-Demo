@@ -1,0 +1,296 @@
+﻿
+@model Skill_Matrix_Model.SkillTransactionModel
+@using Skill_Matrix_Utility;
+
+@{
+    ViewBag.Title = "SelectedSkills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">
+                <em class="fa fa-home"></em>
+            </a>
+        </li>
+        <li class="active">Selected Skill's</li>
+    </ol>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                you have selected the following skills, kindly rate yourself in 1 to 5 against each skills
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Programming Language </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "PL")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @*@Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })*@
+                                            <input type="submit" value="Delete" formaction=@Url.Action("DeleteSkills", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) } ) formmethod="post" onclick="return confirm('Are sure wants to delete?');" />
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Database </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "DB")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Website Designing </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "WD")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Scripting Language </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "SL")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Operating System </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "OS")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Facility Management Service </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @foreach (var item in Model.lstskillTransactionModels)
+                        {
+                            if (item.Skill_Code == "FMS")
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@item.Skill_Name :</label>
+                                    <div class="col-sm-8">
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 1, item.Skill_Score == "1" ? true : false) 1
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 2, item.Skill_Score == "2" ? true : false) 2
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 3, item.Skill_Score == "3" ? true : false) 3
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 4, item.Skill_Score == "4" ? true : false) 4
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.RadioButton(Common.EncryptData(Convert.ToString(item.Skill_Id)), 5, item.Skill_Score == "5" ? true : false) 5
+                                        </label>
+                                        <label class="radio-inline">
+                                            @Html.ActionLink("Delete", "DeleteSkills", "Home", new { @SkillId = Common.EncryptData(Convert.ToString(item.Skill_Id)) }, new { @onclick = "return confirm('Are sure wants to delete?');" })
+                                        </label>
+                                        @Html.ValidationMessageFor(u => u.Skill_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <label class="col-md-5 control-label" for="message"></label>
+            <div class="col-md-2">
+                @if (Model.lstskillTransactionModels.Count() > 0)
+                {
+                    <button type="submit" class="btn btn-primary" id="Btn-Submit">Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["SuccessMessage"]");
+            };
+    </script>
+}

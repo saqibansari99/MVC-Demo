@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://www.onwardgroup.com/bbt-onwardgroup-pro/wp-content/themes/TheOnwardGroup/images/favicon.png">
+
+    <title>Skill Matrix</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Skill Matrix</a>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <div class="profile-sidebar">
+            @*<div class="profile-userpic">
+                    <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                </div>*@
+            <div class="profile-usertitle">
+                @*<div class="profile-usertitle-name">Username</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>*@
+                <img class="img-responsive" src="http://www.onwardgroup.com/bbt-onwardgroup-pro/wp-content/themes/TheOnwardGroup/images/Logo.png" alt="Engineering Software Services, software outsourcing companies in India, Digital Engineering Services">
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="divider"></div>
+        <ul class="nav menu">
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index","Home")"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddYourSkills" ? "active" : "")"><a href="@Url.Action("AddYourSkills","Home")"><em class="fa fa-calendar">&nbsp;</em> Add Your Skills</a></li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "SelectedSkills" ? "active" : "")"><a href="@Url.Action("SelectedSkills","Home")"><em class="fa fa-bar-chart">&nbsp;</em> My Skills</a></li>
+            @*<li><a href="@Url.Action("Contact","Home")"><em class="fa fa-bar-chart">&nbsp;</em> TimeSheet</a></li>*@
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddResource" ? "active" : "")"><a href="@Url.Action("AddResource","ResourceManager")"><em class="fa fa-toggle-off">&nbsp;</em> Resource Management</a></li>
+            <li class="parent ">
+                <a data-toggle="collapse" href="#sub-item-1">
+                    <em class="fa fa-navicon">&nbsp;</em> Human Resource <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-1">
+                    <li>
+                        <a class="" href="#">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Joining
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Appraisal
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="@Url.Action("LogOut","Login")"><em class="fa fa-power-off">&nbsp;</em> Logout</a>
+            </li>
+        </ul>
+    </div><!--/.sidebar-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        @*<div class="row">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">
+                            <em class="fa fa-home"></em>
+                        </a>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>*@
+
+        @*<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+            </div>*@
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>Copyright © 2016 Onward Technologies Ltd. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
