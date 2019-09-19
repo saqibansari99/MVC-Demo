@@ -80,6 +80,5 @@ namespace Skill_Matrix_WebApplication.Controllers
             this.Response.Cache.SetNoStore();
             return RedirectToActionPermanent("Index", "Login");
         }
-
     }
 }
